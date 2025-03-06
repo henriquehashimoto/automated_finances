@@ -1,25 +1,60 @@
 # Automated Finances
 
-This repo is dedicated to register how I'll be automating my spending tracking
-teste
+Automated Finances
 
-# Roadmap 
+System for personal expense management using Streamlit and Neon (PostgreSQL).
 
-## Data Ingestion
 
-- Extract data from Despezzas App 
-- Send to Google Drive
-- Read on Python
-    - Clean the file and normalize in a pattern
+## Functionalities
+- Manual expense input
+- Expense upload via CSV
+- Editing and removal of expenses
+- Data visualization and reports
+- Expense categorization
+- Marking of essential/non-essential expenses
 
-## Transforming Data 
+## Technologies
+- Python
+- Streamlit (Frontend)
+- PostgreSQL/Neon (Database)
+- SQLAlchemy (ORM)
+- Pandas (Data manipulation)
+- Plotly (Visualizations)
 
-- Create some dimensions with the classifications of differnt types of spendings 
-- Normalize informations 
-- Create necessary aggregated tables for dashboards
 
-## Loading data 
+## Project Structure
+automated_finances/
+├── src/
+│   ├── database/
+│   │   ├── __init__.py
+│   │   ├── models.py
+│   │   └── connection.py
+│   ├── services/
+│   │   ├── __init__.py
+│   │   └── expense_service.py
+│   └── pages/
+│       ├── __init__.py
+│       ├── home.py
+│       ├── expenses.py
+│       └── reports.py
+├── data/
+│   └── sample_data.csv
+├── tests/
+└── config/
+    └── config.py
 
-- Load data in MotherDuck cloud service
+## Configuration
+1. Create a `.env` file in the project root with the following variables:
 
-- Use Streamlit to create visualizations 
+---
+
+# Development
+
+## Roadmap
+
+[ ] CRUD of expenses
+[ ] CSV upload
+[ ] Category reports
+[ ] Monthly evolution graphs
+[ ] Period filters
+[ ] Export data
