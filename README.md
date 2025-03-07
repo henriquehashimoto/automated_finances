@@ -20,6 +20,7 @@ System for personal expense management using Streamlit and Neon (PostgreSQL).
 - SQLAlchemy (ORM)
 - Pandas (Data manipulation)
 - Plotly (Visualizations)
+- PyDantic and Pytest (data quality and validation)
 
 
 ## Project Structure
@@ -44,7 +45,20 @@ automated_finances/
     └── config.py
 
 ## Configuration
-1. Create a `.env` file in the project root with the following variables:
+1. Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+```
+NEON_DB_URL=sua_url_do_neon
+```
+
+2. Instale as dependências:
+```bash
+pip install -r requirements.txt
+```
+
+3. Execute o aplicativo:
+```bash
+streamlit run src/pages/home.py
+```
 
 ---
 
