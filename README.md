@@ -28,14 +28,14 @@ System for personal expense management using Streamlit and Neon (PostgreSQL).
 automated_finances/
 ├── src/
 │   ├── database/
-│   │   ├── __init__.py
+│   │   ├── init.py
 │   │   ├── models.py
 │   │   └── connection.py
 │   ├── services/
-│   │   ├── __init__.py
+│   │   ├── init.py
 │   │   └── expense_service.py
 │   └── pages/
-│       ├── __init__.py
+│       ├── init.py
 │       ├── home.py
 │       ├── expenses.py
 │       └── reports.py
