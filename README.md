@@ -24,6 +24,7 @@ System for personal expense management using Streamlit and Neon (PostgreSQL).
 
 
 ## Project Structure
+
 automated_finances/
 ├── src/
 │   ├── database/
@@ -43,6 +44,7 @@ automated_finances/
 ├── tests/
 └── config/
     └── config.py
+
 
 ## Configuration
 1. Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
