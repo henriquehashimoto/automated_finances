@@ -25,9 +25,9 @@ System for personal expense management using Streamlit and Neon (PostgreSQL).
 
 ## Project Structure
 
-automated_finances/
-├── src/
-│   ├── database/
+automated_finances/ 
+├── src/ 
+│   ├── database/ 
 │   │   ├── init.py
 │   │   ├── models.py
 │   │   └── connection.py
@@ -69,8 +69,13 @@ streamlit run src/pages/home.py
 ## Roadmap
 
 [ ] CRUD of expenses
+
 [ ] CSV upload
+
 [ ] Category reports
+
 [ ] Monthly evolution graphs
+
 [ ] Period filters
+
 [ ] Export data
