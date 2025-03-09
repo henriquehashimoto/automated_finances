@@ -11,13 +11,14 @@ System for personal expense management using Streamlit and Neon (PostgreSQL).
 - [x] Manual expense input
   - [x] Add new expense
   - [x] Add new expense by installments (or if is recurrent e.g. Facilities bills, internet, etc)
-  - [] Iterate to not use form
+  - [ ] Iterate to not use form
+  - [ ] Iterate to add informations as paramenters in variables. Eg.: Expense category, expenser, etc. Instead of hard code
 - [] Delete of exepenses 
   - [x] Simple delete 
   - [ ] Message confirm deletion
-- [] Editing of expenses
-  - [] Edit installments and recurrency separetelly 
-- [] Expense upload via CSV
+- [ ] Editing of expenses
+  - [ ] Edit installments and recurrency separetelly 
+- [ ] Expense upload via CSV
 
 ### Incomes
 - Add income and income type (salary, bonus, 13º, vacations, etc)
