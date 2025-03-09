@@ -13,7 +13,7 @@ from database.models import Expense
 #============================
 # Insert expenses
 #============================
-def insert_expenses(data, valor, descricao, categ, categ_grupo, criador):
+def insert_expenses(data, valor, descricao, categ, categ_grupo, criador, recorrencia, qt_parcelas):
     """
         This module will add a new expense in the database
     """
@@ -40,12 +40,37 @@ def insert_expenses(data, valor, descricao, categ, categ_grupo, criador):
             category = categ,
             category_group = categ_grupo,
             spender = criador,
-            created_at = datetime.now()
+            created_at = datetime.now(),
+            is_recurrent = recorrencia,
+            installment_amounts = qt_parcelas
         )
 
         db.add(novo_gasto)
+
+        #--------------
+        # Add installments in the next months
+        #--------------
+        if qt_parcelas > 1:
+            current_date = data
+            for i in range(1, qt_parcelas):
+                next_month = current_date.replace(day=28) + timedelta(days=4)
+                next_month = next_month.replace(day=1)
+                db.add(Expense(
+                        data = next_month,
+                        value_amount = valor,
+                        description = descricao,
+                        category = categ,
+                        category_group = categ_grupo,
+                        spender = criador,
+                        created_at = datetime.now(),
+                        is_recurrent = recorrencia,
+                        installment_amounts = qt_parcelas
+                ))
+                current_date = next_month
+            
+
         db.commit()
-        # st.success("Expense saved successfully")
+        st.success(f"Gasto {'parcelado' if qt_parcelas > 1 else ''} registrado com sucesso!")
         return True
 
     except Exception as e:
@@ -53,6 +78,11 @@ def insert_expenses(data, valor, descricao, categ, categ_grupo, criador):
         st.error(f"Error on salving: {str(e)}")
         return False
     
+    #--------------
+    # If is the first expense in the month, it'll add the recurrent expenses
+    #--------------
+    
+
     finally:
         db.close()
 
@@ -126,6 +156,8 @@ def get_all_expenses(start_date, end_date):
                     'Categoria': expense.category,
                     'Grupo Categoria': expense.category_group,
                     'Pagador': expense.spender,
+                    'Gasto recorrente?': 'Sim' if expense.is_recurrent else 'Nao',
+                    'Quantidades de Parcelas': expense.installment_amounts,
                     'Valor R$': f"R$ {expense.value_amount:.2f}",
                 })
             return pd.DataFrame(expenses_data)

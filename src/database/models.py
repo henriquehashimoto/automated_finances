@@ -14,5 +14,7 @@ class Expense(Base):
     category = Column(String, nullable=False)
     category_group = Column(String)
     spender = Column(String)
+    is_recurrent = Column(Boolean)
+    installment_amounts = Column(Integer)
     created_at = Column(DateTime, default=datetime.now())
 

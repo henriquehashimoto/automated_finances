@@ -9,9 +9,12 @@ ROADMAP DE MELHORIAS:
 
 from unicodedata import category
 from datetime import datetime, timedelta
+from numpy import integer
 import streamlit as st
 import pandas as pd
 import sys
+
+from traitlets import default
 sys.path.append("src")
 from database.connection import get_db, SessionLocal
 from database.models import Expense
@@ -19,7 +22,6 @@ from crud_ops_aux import insert_expenses, delete_expense, get_all_expenses
 
 
 st.set_page_config(page_title="Gerenciador de Gastos", layout="wide")
-
 
 
 #============================
@@ -41,7 +43,7 @@ def main():
 
             with col1:
                 data = st.date_input("Data do gasto")
-                valor = st.number_input("Valor do gasto R$", min_value=0.0, format="%.2f")
+                valor = st.number_input("Valor do gasto ou da parcela R$", min_value=0.0, format="%.2f")
                 descricao = st.text_input("Descricao do gasto")
 
             with col2:
@@ -50,11 +52,18 @@ def main():
                 categoria_grupo = st.selectbox("Grupo da categoria do gasto",
                                     ["Essencial", "Não essencial"])
 
-                pagador = st.selectbox("Quem gastou", ["Henrique", "Keth"])
+                pagador = st.selectbox("Quem gastou", ["Henrique", "Keth"])                                
+                recorrencia = st.checkbox("Gasto é recorrente / parcelado?")
+
+                # If the recurrency is checked then it'll activate the option to pass how many installments
+                qt_parcelas = 0
+                # if st.session_state.show_parcelas:
+                qt_parcelas = st.number_input("Quantas parcelas são? Coloque 100 se for recorrente mensal",step=1,min_value=0)
+
 
             if st.form_submit_button("Salvar gasto"):
-                if insert_expenses(data, valor, descricao, categoria, categoria_grupo, pagador):
-                    st.success("Gasto resgistrado com sucesso!")
+                insert_expenses(data, valor, descricao, categoria, categoria_grupo, pagador, recorrencia, qt_parcelas)
+                
 
     #================
     # If visualize expenses
