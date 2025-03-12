@@ -1,5 +1,7 @@
 # Automated Finances
 
+- UNDER CONSTRUCTION -
+
 Automated Finances
 
 System for personal expense management using Streamlit and Neon (PostgreSQL).
@@ -54,6 +56,9 @@ A MTD vision on how things are going
 - Pandas (Data manipulation)
 - Plotly (Visualizations)
 - PyDantic and Pytest (data quality and validation)
+
+And to extract insights more complex:
+- **MCP SERVER on Neon** -> an A.I. connector so I my local LLM (Windsurf) can read my expenses and help to better understand it
 
 --- 
 
